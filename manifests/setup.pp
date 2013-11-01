@@ -57,5 +57,7 @@ class gitlab::setup {
   }
 
   # other packages
-  ensure_packages(['git-core','postfix','curl'])
+  class { 'curl': }
+
+  ensure_packages(['git-core','postfix'])
 }
