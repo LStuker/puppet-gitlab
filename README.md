@@ -69,6 +69,7 @@ _Note:_ Assume that a database server is already installed on your server/infras
 - nginx ([jfryman/puppet-nginx](https://github.com/jfryman/puppet-nginx) >= 0.0.1)
 - Ruby >= 1.9.3 ([puppetlabs/puppetlabs-ruby](https://github.com/puppetlabs/puppetlabs-ruby) >= 0.0.2)
 - Curl ([Element84/puppet-curl](https://github.com/Element84/puppet-curl) >= 0.0.1)
+- Git ([puppetlabs/puppetlabs-git](https://github.com/puppetlabs/puppetlabs-git.git) >= 0.0.1)
 See [gitlab example](https://github.com/sbadia/vagrant-gitlab/blob/master/examples/gitlab.pp).
 
 ## GitLab web interface
