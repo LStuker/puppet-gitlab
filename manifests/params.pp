@@ -93,16 +93,35 @@ class gitlab::params {
         pgsql => ['postgresql-devel'],
       }
 
+
       $system_packages = ['libicu-devel', 'perl-Time-HiRes','libxml2-devel',
                           'libxslt-devel','python-devel','libcurl-devel',
                           'readline-devel','openssl-devel','zlib-devel',
-                          'libyaml-devel']
+                          'libyaml-devel','patch']
     }
     default: {
       err "${::osfamily} not supported yet"
     }
   }
 
+
   validate_array($system_packages)
+
+  case $::osfamily {
+    'Debian': {
+      $install_gitlab_cmd = "bundle install --without development aws test ${gitlab::params::gitlab_without_gems} --deployment"
+      $setup_gitlab_database_cmd = "/usr/bin/yes yes | bundle exec rake gitlab:setup RAILS_ENV=production"
+      $install_gitlab_shell_cmd = "ruby ${gitlab::params::git_home}/gitlab-shell/bin/install"
+      $ruby = "ruby"
+      $bundle = "bundle"
+    }
+    'RedHat': {
+      $install_gitlab_cmd = "scl enable ruby193 'bundle install --without development aws test ${gitlab::params::gitlab_without_gems} --deployment'"
+      $setup_gitlab_database_cmd = "/usr/bin/yes yes | scl enable ruby193 'bundle exec rake gitlab:setup RAILS_ENV=production'"
+      $install_gitlab_shell_cmd = "scl enable ruby193 'ruby ${gitlab::params::git_home}/gitlab-shell/bin/install'"
+      $ruby = "scl enable ruby193 ruby"
+      $bundle = "scl enable ruby193 bundle"
+    }
+  }
 
 } # Class:: gitlab::params

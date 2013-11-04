@@ -20,7 +20,7 @@ class gitlab::install {
   }
 
   exec { 'install gitlab-shell':
-    command => "ruby ${gitlab::params::git_home}/gitlab-shell/bin/install",
+    command => $gitlab::params::install_gitlab_shell_cmd,
     cwd     => $gitlab::params::git_home,
     creates => "${gitlab::params::gitlab_repodir}/repositories",
     require => File["${gitlab::params::git_home}/gitlab-shell/config.yml"],
@@ -49,7 +49,7 @@ class gitlab::install {
   }
 
   exec { 'install gitlab':
-    command => "bundle install --without development aws test ${gitlab::params::gitlab_without_gems} --deployment",
+    command => $gitlab::params::install_gitlab_cmd,
     cwd     => "${gitlab::params::git_home}/gitlab",
     unless  => "/usr/bin/test -f ${gitlab::params::git_home}/.git_setup_done",
     timeout => 0,
@@ -62,7 +62,7 @@ class gitlab::install {
   }
 
   exec { 'setup gitlab database':
-    command => '/usr/bin/yes yes | bundle exec rake gitlab:setup RAILS_ENV=production',
+    command => $gitlab::params::setup_gitlab_database_cmd,
     cwd     => "${gitlab::params::git_home}/gitlab",
     unless  => "/usr/bin/test -f ${gitlab::params::git_home}/.git_setup_done",
     creates => "${gitlab::params::git_home}/.gitlab_setup_done",
