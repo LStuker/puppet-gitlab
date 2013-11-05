@@ -97,7 +97,7 @@ class gitlab::params {
       $system_packages = ['libicu-devel', 'perl-Time-HiRes','libxml2-devel',
                           'libxslt-devel','python-devel','libcurl-devel',
                           'readline-devel','openssl-devel','zlib-devel',
-                          'libyaml-devel','patch']
+                          'libyaml-devel','patch','gcc-c++']
     }
     default: {
       err "${::osfamily} not supported yet"
