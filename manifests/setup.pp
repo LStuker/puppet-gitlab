@@ -30,6 +30,14 @@ class gitlab::setup {
     mode      => '0644',
   }
 
+  if $::osfamily == 'RedHat' {
+    file { "${gitlab::params::git_home}/.profile":
+      ensure    => file,
+      content   => template('gitlab/profile.erb'),
+      mode      => '0644',
+    }
+  }
+
   # directories
   file { $gitlab::params::git_home:
     ensure => directory,
