@@ -11,7 +11,6 @@ class gitlab::params {
   $gitlab_branch          = '6-2-stable'
   $gitlabshell_sources    = 'git://github.com/gitlabhq/gitlab-shell.git'
   $gitlabshell_branch     = 'v1.7.1'
-  $gitlab_unicorn_port    = '8080'
   $gitlab_http_port       = '80'
   $gitlab_ssl_port        = '443'
   $gitlab_redishost       = 'localhost'
@@ -98,8 +97,7 @@ class gitlab::params {
       $system_packages = ['libicu-devel', 'perl-Time-HiRes','libxml2-devel',
                           'libxslt-devel','python-devel','libcurl-devel',
                           'readline-devel','openssl-devel','zlib-devel',
-                          'libyaml-devel','patch','gcc-c++']
-]
+                          'libyaml-devel','patch']
     }
     default: {
       err "${::osfamily} not supported yet"

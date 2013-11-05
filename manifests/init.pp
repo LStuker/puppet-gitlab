@@ -10,7 +10,6 @@
 # [gitlab_branch] Gitlab branch (default: 6-2-stable)
 # [gitlabshell_sources] Gitlab-shell sources (default: git://github.com/gitlabhq/gitlab-shell.git)
 # [gitlabshell_banch] Gitlab-shell branch (default: v1.7.1)
-# [gitlab_unicorn_port] Port on which unicorn listen on 172.0.0.1 (default: 8080)
 # [gitlab_http_port] Port that NGINX listens on for HTTP traffic (default: 80)
 # [gitlab_ssl_port] Port that NGINX listens on for HTTPS traffic (default: 443)
 # [gitlab_redishost] Redis host used for Sidekiq (default: localhost)
@@ -74,7 +73,6 @@ class gitlab(
     $gitlab_branch          = $gitlab::params::gitlab_branch,
     $gitlabshell_branch     = $gitlab::params::gitlabshell_branch,
     $gitlabshell_sources    = $gitlab::params::gitlabshell_sources,
-    $gitlab_unicorn_port    = $gitlab::params::gitlab_unicorn_port
     $gitlab_http_port       = $gitlab::params::gitlab_http_port,
     $gitlab_ssl_port        = $gitlab::params::gitlab_ssl_port,
     $gitlab_redishost       = $gitlab::params::gitlab_redishost,
