@@ -21,6 +21,7 @@ class gitlab::server {
   $gitlab_branch       = $gitlab::gitlab_branch
   $gitlab_sources      = $gitlab::gitlab_sources
   $gitlab_without_gems = $gitlab::params::gitlab_without_gems
+  $gitlab_unicorn_port = $gitlab::params::gitlab_unicorn_port
   $git_home            = $gitlab::git_home
   $git_user            = $gitlab::git_user
   $git_email           = $gitlab::git_email
