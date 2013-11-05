@@ -59,9 +59,12 @@ class gitlab::setup {
   }
 
   ensure_packages($gitlab::params::system_packages)
-  package { 'charlock_holmes':
-    ensure    => '0.6.9.4',
-    provider  => gem,
+
+  if $::osfamily == 'Debian' {
+    package { 'charlock_holmes':
+      ensure    => '0.6.9.4',
+      provider  => gem,
+    }
   }
 
   # other packages
